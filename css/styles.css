@@ -13,3 +13,19 @@
 .privacy-date{font-size:.85rem}
 .privacy-back{display:inline-block;margin-top:24px;color:var(--lime);text-underline-offset:3px}
 @media(max-width:640px){.privacy-page{padding-block:42px 70px}}
+
+/* Carrusel: imágenes más visibles y controles para las doce fotografías. */
+.carousel{aspect-ratio:1.9}
+.carousel-indicators{align-items:center;gap:5px}
+.indicator{width:21px;min-width:21px;height:28px}
+.carousel-ui{gap:16px}
+.carousel-arrows{flex:none}
+@media(max-width:1000px){.carousel{aspect-ratio:1.65}}
+@media(max-width:640px){
+  .carousel{aspect-ratio:auto}
+  .carousel-ui{align-items:end}
+  .carousel-indicators{display:grid;grid-template-columns:repeat(6,16px);gap:1px 5px}
+  .indicator{width:16px;min-width:16px;height:19px}
+  .arrow{width:40px;height:40px}
+  .slide figcaption{bottom:106px}
+}
