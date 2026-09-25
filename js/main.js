@@ -1,7 +1,17 @@
 (() => {
   const carousel = document.querySelector('.carousel');
   const slides = [...carousel.querySelectorAll('.slide')];
-  const dots = [...carousel.querySelectorAll('.indicator')];
+  const indicators = carousel.querySelector('.carousel-indicators');
+  // Mantener un indicador por fotografía, incluso cuando se agreguen más al HTML.
+  indicators.replaceChildren(...slides.map((_, i) => {
+    const button = document.createElement('button');
+    button.className = i === 0 ? 'indicator is-active' : 'indicator';
+    button.type = 'button';
+    button.setAttribute('aria-label', `Mostrar fotografía ${i + 1}`);
+    if (i === 0) button.setAttribute('aria-current', 'true');
+    return button;
+  }));
+  const dots = [...indicators.querySelectorAll('.indicator')];
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let current = 0;
   let timer;
@@ -9,6 +19,8 @@
 
   function show(index) {
     current = (index + slides.length) % slides.length;
+    slides[current].querySelector('img').loading = 'eager';
+    slides[(current + 1) % slides.length].querySelector('img').loading = 'eager';
     slides.forEach((slide, i) => {
       slide.classList.toggle('is-active', i === current);
       slide.setAttribute('aria-hidden', String(i !== current));
