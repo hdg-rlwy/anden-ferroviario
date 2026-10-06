@@ -1,5 +1,6 @@
 (() => {
   const carousel = document.querySelector('.carousel');
+  if (!carousel) return;
   const slides = [...carousel.querySelectorAll('.slide')];
   const indicators = carousel.querySelector('.carousel-indicators');
   // Mantener un indicador por fotografía, incluso cuando se agreguen más al HTML.
