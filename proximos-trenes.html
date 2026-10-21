@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b1c">
+  <meta name="description" content="Consultá las próximas llegadas y salidas de trenes por estación. Horarios estimados y programados de Trenes Argentinos, con actualización automática.">
+  <title>Próximos trenes por estación | Andén</title>
+  <link rel="canonical" href="https://trenes.com.ar/proximos-trenes.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Próximos trenes por estación | Andén">
+  <meta property="og:description" content="Llegadas y salidas por estación, con la hora de actualización y el tipo de horario informado.">
+  <meta property="og:url" content="https://trenes.com.ar/proximos-trenes.html">
+  <meta property="og:image" content="https://trenes.com.ar/images/pasajeros.jpg">
+  <link rel="icon" href="images/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/arribos.css">
+  <script src="js/main.js" defer></script>
+  <script src="js/estaciones.js" defer></script>
+  <script src="js/arribos-model.js" defer></script>
+  <script src="js/arribos.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="Andén, ir al inicio"><span class="brand-mark" aria-hidden="true">//</span><span>ANDÉN<span class="brand-dot">.</span></span></a>
+      <div class="header-actions"><nav aria-label="Navegación principal"><a href="proximos-trenes.html" aria-current="page">Próximos trenes</a><a href="index.html#lecturas">Guías</a><a href="index.html#operadoras">Operadoras</a><a href="index.html#fotografias">Fotografías</a><button type="button" class="nav-contact" data-contact-open>Contacto</button></nav><a class="linkedin-icon" href="https://www.linkedin.com/in/hidalgojuanignacio21/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Juan Ignacio Hidalgo (abre en otra pestaña)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.74 1.36-1.53 2.79-1.53 2.99 0 3.58 1.97 3.58 4.53v5.25Z"/></svg></a></div>
+    </div>
+  </header>
+<main id="contenido" class="wrap arrivals-page">
+  <p class="eyebrow">CONSULTA POR ESTACIÓN</p>
+  <h1>Próximos trenes<span class="accent">.</span></h1>
+  <p class="arrivals-lead">Elegí una estación para consultar las próximas llegadas y salidas. Cada servicio indica si su horario es estimado o programado.</p>
+  <div class="arrivals-form" role="group" aria-label="Seleccionar estación y destino">
+    <label for="linea">Línea<select id="linea"></select></label>
+    <label for="estacion">Estación<select id="estacion"></select></label>
+    <label for="destino">Destino<select id="destino" disabled><option value="">Todos los destinos</option></select></label>
+  </div>
+  <div class="arrivals-controls">
+    <button type="button" id="actualizar">Actualizar ahora</button>
+    <button type="button" id="pausar" aria-pressed="false">Pausar actualización</button>
+    <span class="arrivals-updated" id="actualizado"></span>
+  </div>
+  <p id="mensaje" class="arrivals-message" role="status" aria-live="polite">Seleccioná una estación para consultar la información.</p>
+  <noscript><p>Para consultar las llegadas necesitás activar JavaScript. También podés consultar <a href="https://www.argentina.gob.ar/transporte/trenes-argentinos" target="_blank" rel="noopener noreferrer">el sitio oficial de Trenes Argentinos</a>.</p></noscript>
+  <section aria-labelledby="resultados-titulo">
+    <div class="arrivals-heading"><h2 id="resultados-titulo">Servicios publicados</h2><span id="cantidad"></span></div>
+    <ul class="arrival-list" id="arribos" aria-busy="false"></ul>
+    <button type="button" id="ver-mas" class="arrivals-more" hidden>Ver más servicios</button>
+  </section>
+  <section class="arrivals-method" aria-labelledby="metodo-titulo">
+    <h2 id="metodo-titulo">Cómo leer los resultados</h2>
+    <dl>
+      <div><dt>Horario estimado</dt><dd>La fuente informó una previsión de llegada o salida. Puede cambiar entre consultas. Junto a ella mostramos el horario programado, cuando está disponible.</dd></div>
+      <div><dt>Horario programado</dt><dd>Es la hora prevista en la programación. La cuenta regresiva indica cuánto falta para esa hora; por sí sola no confirma que el tren circule en horario.</dd></div>
+      <div><dt>Tiempo publicado</dt><dd>La fuente informó una espera, pero no una hora estimada explícita. La conservamos con esa identificación.</dd></div>
+      <div><dt>A confirmar</dt><dd>El horario quedó atrás o no hay un tiempo utilizable. Mostramos el servicio sin atribuirle una nueva hora de llegada o salida.</dd></div>
+    </dl>
+    <h3>Qué incluye esta consulta</h3>
+    <p>Podés seleccionar estaciones de las líneas Mitre, Sarmiento, Roca, San Martín, Belgrano Sur y Tren de la Costa. La cantidad de servicios disponibles depende de la respuesta de cada estación. Los trenes que la fuente identifica como cancelados, ocultos o sin parada se excluyen del listado.</p>
+    <p>En la estación de origen se muestran salidas; en las demás estaciones se muestran llegadas. El filtro de destino utiliza la cabecera final de cada servicio: en estaciones con varios ramales, revisá también el recorrido indicado en la tarjeta.</p>
+    <h3>Actualización y disponibilidad</h3>
+    <p>La consulta se renueva cada 30 segundos mientras la pestaña está visible. La hora del último dato y todos los horarios se muestran en hora de Buenos Aires. Si la información tiene más de dos minutos, el listado deja de mostrarse hasta recibir una respuesta actualizada.</p>
+    <p>Un listado vacío puede deberse a que la fuente no publicó próximos servicios. Para planificar un viaje, comprobá también los avisos y horarios de la operadora.</p>
+    <h3>Fuente y edición</h3>
+    <p>Datos: <a href="https://www.argentina.gob.ar/transporte/trenes-argentinos" target="_blank" rel="noopener noreferrer">Trenes Argentinos Operaciones</a>, mediante su <a href="https://api-servicios.sofse.gob.ar/v1/infraestructura/ramales" target="_blank" rel="noopener noreferrer">servicio público de información ferroviaria</a>. Selección, organización y presentación: Andén. Esta es una herramienta independiente.</p>
+    <p><a href="index.html#operadoras">Consultar otras operadoras ferroviarias</a> · <a href="index.html#lecturas">Explorar las guías de Andén</a></p>
+  </section>
+</main>
+  <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title"><div class="dialog-head"><p class="eyebrow">CONTACTO</p><button type="button" class="dialog-close" data-contact-close aria-label="Cerrar contacto">×</button></div><h2 id="contact-title">Hablemos de ferrocarriles.</h2><p>Para consultas sobre este sitio, podés escribirme por LinkedIn.</p><a class="contact-link" href="https://www.linkedin.com/in/hidalgojuanignacio21/" target="_blank" rel="noopener noreferrer">Ir a mi LinkedIn <span aria-hidden="true">↗</span></a></dialog>
+  <footer id="acerca" class="footer"><div class="wrap footer-inner"><div><span class="footer-brand">ANDÉN<span class="accent">.</span></span><p>Un espacio independiente para conocer los trenes del país.</p><p>Última actualización: 21/10/2026.</p></div><p>Este sitio no pertenece a ninguna operadora ni organismo estatal. Las marcas y logotipos corresponden a sus respectivos titulares. Fotografías originales del sitio bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 2.0</a>. <a href="CREDITOS-IMAGENES.md">Créditos</a> · <a href="privacidad.html">Privacidad</a>.</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trenes.com.ar/sitemap.xml
