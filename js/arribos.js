@@ -45,6 +45,11 @@
         const planned = document.createElement('p'); planned.className = 'arrival-programmed';
         planned.textContent = `Horario programado: ${clock.format(row.scheduled)}`; main.append(planned);
       }
+      if (globalThis.AndenTrainMap?.hasPosition(row.id)) {
+        const mapLink = document.createElement('button'); mapLink.type = 'button'; mapLink.className = 'arrival-map-link';
+        mapLink.textContent = 'Ver tren en el mapa';
+        mapLink.addEventListener('click', () => globalThis.AndenTrainMap.focus(row.id)); main.append(mapLink);
+      }
       const timing = document.createElement('div'); timing.className = 'arrival-time';
       const minutes = model.remaining(row, now);
       const value = document.createElement('strong');
@@ -92,6 +97,7 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (active !== requestId) return;
+      document.dispatchEvent(new CustomEvent('anden:arrivals-data', { detail: { stationId: currentStation.id, data } }));
       const result = model.normalize(data, { stationId: currentStation.id, gerencia: currentLine.gerencia });
       if (result.error) throw new Error(result.error);
       snapshot = result;
@@ -111,6 +117,7 @@
   function changeStation() {
     snapshot = null; visibleLimit = 12; render();
     heading.textContent = `${station().name} · ${line().name}`;
+    document.dispatchEvent(new CustomEvent('anden:selection-change', { detail: { lineId: line().id, stationId: station().id } }));
     destinationSelect.replaceChildren(option('', 'Todos los destinos')); destinationSelect.disabled = true;
     load();
   }
@@ -126,10 +133,11 @@
   stationSelect.addEventListener('change', changeStation);
   destinationSelect.addEventListener('change', () => { visibleLimit = 12; render(); });
   moreButton.addEventListener('click', () => { visibleLimit += 12; render(); });
-  refreshButton.addEventListener('click', load);
+  refreshButton.addEventListener('click', () => { load(); document.dispatchEvent(new Event('anden:manual-refresh')); });
   pauseButton.addEventListener('click', () => {
     paused = !paused; pauseButton.textContent = paused ? 'Reanudar actualización' : 'Pausar actualización';
     pauseButton.setAttribute('aria-pressed', String(paused));
+    document.dispatchEvent(new CustomEvent('anden:pause-change', { detail: { paused } }));
     if (paused) { clearTimeout(timer); render(); } else load();
   });
   document.addEventListener('visibilitychange', () => {
