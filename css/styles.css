@@ -29,3 +29,9 @@
   .arrow{width:40px;height:40px}
   .slide figcaption{bottom:106px}
 }
+
+/* El menú admite más accesos sin desbordar pantallas angostas. */
+.header-inner,.header-actions,.site-header nav{flex-wrap:wrap}
+.header-actions{max-width:100%}
+.site-header nav{row-gap:9px;column-gap:clamp(14px,2vw,28px)}
+@media(max-width:640px){.header-actions nav{flex:1 1 220px}.header-actions{width:100%}.linkedin-icon{flex-shrink:0}}

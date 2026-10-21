@@ -1,0 +1,45 @@
+.arrivals-page{padding-block:48px 80px;max-width:1100px}
+.arrivals-page h1{font-size:clamp(2.6rem,6vw,4.8rem);letter-spacing:-.055em;line-height:1.08;margin:0 0 18px}
+.arrivals-lead{color:var(--muted);max-width:720px;font-size:1.1rem;margin-bottom:32px}
+.arrivals-form{display:grid;grid-template-columns:1fr 1.35fr 1.15fr;gap:18px;padding:24px;background:var(--surface);border:1px solid var(--border)}
+.arrivals-form label{display:grid;gap:8px;font-size:.83rem;font-weight:700;min-width:0}
+.arrivals-form select{min-width:0;width:100%;font:inherit;font-size:.95rem;border:1px solid #617572;background:var(--bg);color:var(--text);padding:12px 10px;border-radius:0}
+.arrivals-form select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.arrivals-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin:20px 0 10px}
+.arrivals-controls button{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:10px 14px;cursor:pointer}
+.arrivals-controls button:first-child{background:var(--lime);color:var(--bg);border-color:var(--lime);font-weight:750}
+.arrivals-controls button:disabled{opacity:.6;cursor:wait}
+.arrivals-updated{font-size:.78rem;color:var(--muted);flex:1 1 260px}
+.arrivals-message{border-left:3px solid var(--border);padding:10px 14px;min-height:44px;color:var(--muted);font-size:.87rem}
+.arrivals-message[data-kind=ok]{border-color:var(--lime)}
+.arrivals-message[data-kind=warning]{border-color:#efc57a;color:#f1d7aa}
+.arrivals-heading{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px;margin-top:38px}
+.arrivals-heading h2{font-size:1.4rem;letter-spacing:-.025em;margin:0;overflow-wrap:anywhere}
+.arrivals-heading>span{font-size:.8rem;color:var(--muted)}
+.arrival-list{display:grid;list-style:none;padding:0;margin:20px 0 42px;gap:12px}
+.arrivals-more{display:block;margin:-18px 0 36px;padding:11px 18px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer}
+.arrivals-more[hidden]{display:none}
+.arrival-card{padding:23px 25px;background:var(--surface);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:24px}
+.arrival-main{min-width:0;overflow-wrap:anywhere}
+.arrival-main h3{font-size:1.35rem;line-height:1.2;margin:7px 0}
+.arrival-number{color:var(--lime);font-size:.73rem;font-weight:750;letter-spacing:.05em}
+.arrival-main p{font-size:.83rem;color:var(--muted);margin:0}
+.arrival-main .arrival-programmed{margin-top:8px;font-size:.78rem}
+.arrival-time{display:grid;gap:4px;text-align:right;flex-shrink:0;max-width:45%}
+.arrival-time strong{font-size:1.5rem;line-height:1.2;letter-spacing:-.03em}
+.arrival-basis{font-size:.74rem;color:var(--muted)}
+.basis-estimated{color:var(--lime)}
+.arrival-clock{font-size:.78rem;color:var(--muted)}
+.arrivals-method{border-top:1px solid var(--border);padding-top:24px;max-width:780px}
+.arrivals-method h2{font-size:1.4rem;margin:0 0 18px}
+.arrivals-method h3{font-size:1rem;margin:24px 0 8px}
+.arrivals-method p,.arrivals-method li{color:var(--muted);font-size:.92rem;line-height:1.75}
+.arrivals-method a{color:var(--lime);text-underline-offset:3px}
+.arrivals-method dl{display:grid;gap:16px;margin:20px 0}
+.arrivals-method dt{font-weight:750;margin-bottom:4px}
+.arrivals-method dd{margin:0;color:var(--muted);font-size:.92rem;line-height:1.7}
+.tool-access{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;padding:24px;border:1px solid var(--border);background:var(--surface);margin-top:35px}
+.tool-access h2{font-size:1.45rem;line-height:1.2;letter-spacing:-.03em;margin:0 0 8px}
+.tool-access p{color:var(--muted);font-size:.9rem;margin:0;max-width:680px}
+.tool-access a{padding:12px 16px;background:var(--lime);color:var(--bg);text-decoration:none;font-weight:750;font-size:.9rem}
+@media(max-width:680px){.arrivals-form{grid-template-columns:1fr;padding:18px;gap:16px}.arrivals-page{padding-top:32px}.arrival-card{padding:18px 16px;gap:14px}.arrival-main h3{font-size:1.15rem}.arrival-time strong{font-size:1.2rem}.arrivals-controls{gap:10px}.arrivals-updated{flex-basis:100%}.tool-access{padding:20px}.arrival-time{max-width:42%}}
